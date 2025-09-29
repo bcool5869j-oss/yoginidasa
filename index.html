@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Yogini Dasa — Demo</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.45;padding:18px;max-width:980px;margin:auto}
+  h1{font-size:1.4rem;margin:0 0 10px}
+  .meta{color:#555;margin-bottom:14px}
+  .error{color:#a00;background:#fee;padding:10px;border-radius:6px}
+  table{width:100%;border-collapse:collapse;margin:12px 0}
+  th,td{padding:8px 10px;border:1px solid #ddd;text-align:left;font-size:0.95rem}
+  th{background:#f5f7fb}
+  .small{font-size:0.85rem;color:#444}
+  .btn{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #1976d2;background:#fff;color:#1976d2;cursor:pointer}
+  .btn-primary{background:#1976d2;color:#fff;border-color:#1976d2}
+  details{margin-top:8px}
+  .muted{color:#666;font-size:0.9rem}
+</style>
+</head>
+<body>
+  <h1>Yogini Dasa Demo</h1>
+  <div class="meta">Shows <strong>Mahadasha → Antardasha</strong>. By default the first <strong>2 ADs</strong> are visible for each MD; click <em>Show all</em> to expand.</div>
+
+  <div id="main">
+    <div id="message" class="muted">Loading yogini.json …</div>
+  </div>
+
+<script>
+(async function(){
+  const main = document.getElementById('main');
+  const msg = document.getElementById('message');
+
+  function isoToLocal(isoStr){
+    try {
+      const d = new Date(isoStr);
+      if (isNaN(d)) return isoStr;
+      return d.toLocaleString();
+    } catch(e){
+      return isoStr;
+    }
+  }
+
+  function createTableForMD(mdObj){
+    const container = document.createElement('div');
+    container.style.marginBottom = '20px';
+
+    const h = document.createElement('div');
+    h.innerHTML = `<strong>MD:</strong> ${mdObj.name} &nbsp; <span class="small">[${isoToLocal(mdObj.start)} → ${isoToLocal(mdObj.end)}]</span>`;
+    container.appendChild(h);
+
+    const adList = mdObj.children || [];
+    if (!adList.length){
+      const p = document.createElement('p');
+      p.className = 'muted';
+      p.textContent = 'No Antardashas found in JSON.';
+      container.appendChild(p);
+      return container;
+    }
+
+    const visibleCount = 2;
+    const table = document.createElement('table');
+    table.innerHTML = `<thead><tr><th>#</th><th>AD Name</th><th>Years</</th><th>Start (local)</th><th>End (local)</th></tr></thead>`;
+    const tb = document.createElement('tbody');
+    table.appendChild(tb);
+
+    function renderRows(count){
+      tb.innerHTML = '';
+      for (let i=0;i<count && i<adList.length;i++){
+        const ad = adList[i];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${i+1}</td>
+          <td>${ad.name}</td>
+          <td>${ad.years ?? ''}</td>
+          <td>${isoToLocal(ad.start)}</td>
+          <td>${isoToLocal(ad.end)}</td>`;
+        tb.appendChild(tr);
+      }
+    }
+
+    renderRows(Math.min(visibleCount, adList.length));
+    container.appendChild(table);
+
+    if (adList.length > visibleCount){
+      const ctrl = document.createElement('div');
+      ctrl.style.marginTop = '8px';
+      const showAll = document.createElement('button');
+      showAll.className = 'btn';
+      showAll.textContent = `Show all ${adList.length} ADs`;
+      let expanded = false;
+      showAll.onclick = () => {
+        expanded = !expanded;
+        if (expanded){
+          renderRows(adList.length);
+          showAll.textContent = 'Collapse';
+          showAll.className = 'btn btn-primary';
+        } else {
+          renderRows(visibleCount);
+          showAll.textContent = `Show all ${adList.length} ADs`;
+          showAll.className = 'btn';
+        }
+      };
+      ctrl.appendChild(showAll);
+      container.appendChild(ctrl);
+    }
+
+    const d = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = 'Raw AD JSON (debug)';
+    d.appendChild(summary);
+    const pre = document.createElement('pre');
+    pre.textContent = JSON.stringify(adList, null, 2);
+    d.appendChild(pre);
+    container.appendChild(d);
+
+    return container;
+  }
+
+  try {
+    const resp = await fetch('yogini.json', {cache: "no-store"});
+    if (!resp.ok) {
+      msg.className = 'error';
+      msg.textContent = `Failed to load yogini.json — HTTP ${resp.status}`;
+      return;
+    }
+    const data = await resp.json();
+
+    let mds = [];
+    if (data.md) mds = [data.md];
+    else if (Array.isArray(data.mds)) mds = data.mds;
+    else if (Array.isArray(data)) mds = data;
+    else {
+      msg.className = 'error';
+      msg.textContent = 'Unexpected JSON structure.';
+      return;
+    }
+
+    msg.remove();
+    mds.forEach(md => {
+      const node = createTableForMD(md);
+      main.appendChild(node);
+    });
+
+  } catch (err){
+    msg.className = 'error';
+    msg.textContent = 'Error parsing yogini.json — ' + (err.message || err);
+  }
+})();
+</script>
+</body>
+</html>
