@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Yogini Dasa (no JSON)</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;padding:18px;max-width:900px;margin:auto}
+h1{font-size:1.4rem}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{padding:8px;border:1px solid #ddd;text-align:left}
+th{background:#f5f7fb}
+.btn{padding:6px 10px;border-radius:6px;border:1px solid #1976d2;background:#fff;color:#1976d2;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>Yogini Dasa — embedded JS data</h1>
+<p>This page uses a <code>yogini_data.js</code> script that defines <code>window.yoginiData</code> (no external JSON fetch).</p>
+<div id="main"></div>
+<script src="yogini_data.js"></script>
+<script>
+(function(){
+  const data = window.yoginiData;
+  const main = document.getElementById('main');
+  if (!data || !data.md) {
+    main.textContent = 'No data found in yogini_data.js';
+    return;
+  }
+  const md = data.md;
+  const h = document.createElement('div');
+  h.innerHTML = '<strong>MD:</strong> ' + md.name + ' [' + new Date(md.start).toLocaleString() + ' → ' + new Date(md.end).toLocaleString() + ']';
+  main.appendChild(h);
+
+  const children = md.children || [];
+  const visible = 2;
+  const table = document.createElement('table');
+  table.innerHTML = '<thead><tr><th>#</th><th>AD</th><th>Years</th><th>Start</th><th>End</th></tr></thead>';
+  const tb = document.createElement('tbody');
+  table.appendChild(tb);
+  function render(n){
+    tb.innerHTML = '';
+    for (let i=0;i<n && i<children.length;i++){
+      const ad = children[i];
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>'+(i+1)+'</td><td>'+ad.name+'</td><td>'+ (ad.years||'') +'</td><td>' + new Date(ad.start).toLocaleString() + '</td><td>' + new Date(ad.end).toLocaleString() + '</td>';
+      tb.appendChild(tr);
+    }
+  }
+  render(Math.min(visible, children.length));
+  main.appendChild(table);
+  if (children.length > visible){
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = 'Show all ADs';
+    btn.onclick = function(){
+      if (btn.textContent.startsWith('Show')){
+        render(children.length);
+        btn.textContent = 'Collapse';
+        btn.className = 'btn';
+      } else {
+        render(visible);
+        btn.textContent = 'Show all ADs';
+      }
+    };
+    main.appendChild(btn);
+  }
+})();
+</script>
+</body>
+</html>
