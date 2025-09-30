@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Yogini Dasha Calculator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 20px; background:#fafafa; }
+    h1 { color:#044; }
+    label { display:block; margin-top:10px; font-weight:600; }
+    input, select, button {
+      padding:6px 10px; margin-top:5px;
+      border:1px solid #ccc; border-radius:6px;
+      font-size:1rem;
+    }
+    .row { display:flex; gap:6px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+    button { background:#066; color:#fff; border:0; cursor:pointer; }
+    #result { margin-top:20px; padding:12px; background:#eef; border-radius:8px; font-weight:600; }
+  </style>
+</head>
+<body>
+  <h1>Yogini Dasha Calculator</h1>
+
+  <label>Start Date</label>
+  <input type="date" id="startDate" value="2024-01-18">
+  <div class="row">
+    <input id="startHour" type="number" min="1" max="12" value="9"> :
+    <input id="startMin" type="number" min="0" max="59" value="24"> :
+    <input id="startSec" type="number" min="0" max="59" value="9">
+    <select id="startAmpm"><option>AM</option><option selected>PM</option></select>
+  </div>
+
+  <label>End Date</label>
+  <input type="date" id="endDate" value="2032-01-18">
+  <div class="row">
+    <input id="endHour" type="number" min="1" max="12" value="10"> :
+    <input id="endMin" type="number" min="0" max="59" value="0"> :
+    <input id="endSec" type="number" min="0" max="59" value="40">
+    <select id="endAmpm"><option selected>PM</option><option>AM</option></select>
+  </div>
+
+  <label>Degree & Minutes</label>
+  <div class="row">
+    <input id="deg" type="number" min="0" max="30" value="3"> °
+    <input id="min" type="number" min="0" max="59" value="37"> ′
+  </div>
+
+  <button onclick="calc()">Calculate Yogini Dasha</button>
+
+  <div id="result"></div>
+
+  <script>
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function toMs(dateId,hId,mId,sId,ampmId){
+      const dVal=document.getElementById(dateId).value;
+      if(!dVal) return NaN;
+      const d=new Date(dVal+'T00:00:00');
+      let h=+document.getElementById(hId).value||0;
+      const m=+document.getElementById(mId).value||0;
+      const s=+document.getElementById(sId).value||0;
+      const ap=document.getElementById(ampmId).value;
+      if(ap==='PM' && h<12) h+=12;
+      if(ap==='AM' && h===12) h=0;
+      d.setHours(h,m,s,0);
+      return d.getTime();
+    }
+
+    function calc(){
+      const sMs=toMs('startDate','startHour','startMin','startSec','startAmpm');
+      const eMs=toMs('endDate','endHour','endMin','endSec','endAmpm');
+      if(!(sMs>0 && eMs>sMs)) { document.getElementById('result').innerText='Invalid dates'; return; }
+
+      const deg=+document.getElementById('deg').value;
+      const mins=+document.getElementById('min').value;
+      if(isNaN(deg)||deg<0||deg>30||isNaN(mins)||mins<0||mins>=60){
+        document.getElementById('result').innerText='Invalid degree/minutes'; return;
+      }
+
+      const fraction=(deg+mins/60)/30;
+      const offsetMs=fraction*(eMs-sMs);
+      const target=new Date(sMs+offsetMs);
+
+      let h=target.getHours(), m=pad(target.getMinutes()), s=pad(target.getSeconds());
+      const ampm=h>=12?'PM':'AM'; h=h%12||12;
+      const out=`${deg}°${mins}′ → ${target.getFullYear()}-${pad(target.getMonth()+1)}-${pad(target.getDate())} ${pad(h)}:${m}:${s} ${ampm}`;
+      document.getElementById('result').innerText=out;
+    }
+  </script>
+</body>
+</html>
