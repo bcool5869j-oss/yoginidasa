@@ -1,0 +1,447 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Yogini Dasha — Tables + 11 Calculators</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:system-ui,Arial; padding:18px; background:#fafafa; color:#111}
+    h1{color:#044; margin:0 0 10px}
+    .tables{display:flex; gap:18px; flex-wrap:wrap; margin-bottom:18px}
+    table{border-collapse:collapse; background:#fff; min-width:280px}
+    th,td{border:1px solid #ccc; padding:6px 10px; text-align:center}
+    th{background:#066;color:#fff}
+    caption{font-weight:700; padding:6px 0}
+
+    .grid-calcs{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px}
+    .calc{background:#fff; border:1px solid #ddd; padding:10px; border-radius:6px}
+    .calc h3{margin:0 0 8px; font-size:1rem; color:#055}
+    label{display:block; font-size:0.9rem; margin-top:6px}
+    input, select, button{padding:6px; border-radius:6px; border:1px solid #ccc}
+    .time-entry{display:flex; gap:6px; align-items:center; margin-top:6px; flex-wrap:wrap}
+    .time-entry input{width:58px}
+    button.run{background:#066;color:#fff;border:0;padding:8px 10px;border-radius:6px;margin-top:8px}
+    .result{margin-top:8px; background:#eef; padding:8px; border-radius:6px; font-weight:700}
+    .small{font-size:0.85rem; color:#444; margin-top:6px}
+  </style>
+</head>
+<body>
+  <h1>Yogini Dasha — Tables + 11 Calculators</h1>
+
+  <div class="tables">
+    <table aria-labelledby="planets">
+      <caption id="planets">Planets & Lagna</caption>
+      <tr><th>Body</th><th>Longitude</th><th>Nakshatra</th></tr>
+      <tr><td>Lagna</td><td>12 Sg 22′ 07.92″</td><td>Mool</td></tr>
+      <tr><td>Sun</td><td>14 Sc 26′ 23.76″</td><td>Anu</td></tr>
+      <tr><td>Moon</td><td>21 Cp 32′ 32.13″</td><td>Srav</td></tr>
+      <tr><td>Mars (R)</td><td>3 Cn 51′ 00.96″</td><td>Push</td></tr>
+      <tr><td>Mercury (R)</td><td>28 Li 33′ 45.60″</td><td>Visa</td></tr>
+      <tr><td>Jupiter</td><td>15 Vi 49′ 12.51″</td><td>Hast</td></tr>
+      <tr><td>Venus</td><td>26 Sg 06′ 45.76″</td><td>Psha</td></tr>
+      <tr><td>Saturn</td><td>19 Cp 43′ 58.67″</td><td>Srav</td></tr>
+      <tr><td>Rahu</td><td>27 Sc 47′ 50.59″</td><td>Jye</td></tr>
+      <tr><td>Ketu</td><td>27 Ta 47′ 50.59″</td><td>Mrig</td></tr>
+    </table>
+
+    <table aria-labelledby="houses">
+      <caption id="houses">House Cusps</caption>
+      <tr><th>House</th><th>Cusp Degree</th></tr>
+      <tr><td>1st</td><td>12 Sg 22′ 07.92″</td></tr>
+      <tr><td>2nd</td><td>16 Cp 09′ 40.56″</td></tr>
+      <tr><td>3rd</td><td>19 Aq 57′ 13.19″</td></tr>
+      <tr><td>4th</td><td>23 Pi 44′ 45.83″</td></tr>
+      <tr><td>5th</td><td>19 Ar 57′ 13.19″</td></tr>
+      <tr><td>6th</td><td>16 Ta 09′ 40.56″</td></tr>
+      <tr><td>7th</td><td>12 Ge 22′ 07.92″</td></tr>
+      <tr><td>8th</td><td>16 Cn 09′ 40.56″</td></tr>
+      <tr><td>9th</td><td>19 Le 57′ 13.19″</td></tr>
+      <tr><td>10th</td><td>23 Vi 44′ 45.83″</td></tr>
+      <tr><td>11th</td><td>19 Li 57′ 13.19″</td></tr>
+      <tr><td>12th</td><td>16 Sc 09′ 40.56″</td></tr>
+    </table>
+  </div>
+
+  <h2>Pre-filled Mahadasha / Antardasha Calculators</h2>
+  <div class="grid-calcs">
+
+    <div class="calc" id="calc-Rahu-MD">
+      <h3>Rahu MD</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2020-01-19">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="8"> :
+        <input class="startMin" type="number" min="0" max="59" value="57"> :
+        <input class="startSec" type="number" min="0" max="59" value="12">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2028-01-19">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="10"> :
+        <input class="endMin" type="number" min="0" max="59" value="10"> :
+        <input class="endSec" type="number" min="0" max="59" value="31">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Sat-AD">
+      <h3>Sat AD</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-02-28">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="5"> :
+        <input class="startMin" type="number" min="0" max="59" value="44"> :
+        <input class="startSec" type="number" min="0" max="59" value="3">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2026-06-30">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="5"> :
+        <input class="endMin" type="number" min="0" max="59" value="56"> :
+        <input class="endSec" type="number" min="0" max="59" value="16">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Rah-PD">
+      <h3>Rah PD</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-08-23">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="2"> :
+        <input class="startMin" type="number" min="0" max="59" value="28"> :
+        <input class="startSec" type="number" min="0" max="59" value="27">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-12-09">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="7"> :
+        <input class="endMin" type="number" min="0" max="59" value="51"> :
+        <input class="endSec" type="number" min="0" max="59" value="10">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Rah-(sookshma)">
+      <h3>Rah (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-08-23">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="2"> :
+        <input class="startMin" type="number" min="0" max="59" value="28"> :
+        <input class="startSec" type="number" min="0" max="59" value="27">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-09-16">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="3"> :
+        <input class="endMin" type="number" min="0" max="59" value="40"> :
+        <input class="endSec" type="number" min="0" max="59" value="10">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Moon-(sookshma)">
+      <h3>Moon (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-09-16">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="3"> :
+        <input class="startMin" type="number" min="0" max="59" value="40"> :
+        <input class="startSec" type="number" min="0" max="59" value="10">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-09-19">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="3"> :
+        <input class="endMin" type="number" min="0" max="59" value="49"> :
+        <input class="endSec" type="number" min="0" max="59" value="8">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Sun-(sookshma)">
+      <h3>Sun (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-09-19">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="3"> :
+        <input class="startMin" type="number" min="0" max="59" value="49"> :
+        <input class="startSec" type="number" min="0" max="59" value="8">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-09-25">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="4"> :
+        <input class="endMin" type="number" min="0" max="59" value="7"> :
+        <input class="endSec" type="number" min="0" max="59" value="4">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Jup-(sookshma)">
+      <h3>Jup (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-09-25">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="4"> :
+        <input class="startMin" type="number" min="0" max="59" value="7"> :
+        <input class="startSec" type="number" min="0" max="59" value="4">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-10-04">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="4"> :
+        <input class="endMin" type="number" min="0" max="59" value="33"> :
+        <input class="endSec" type="number" min="0" max="59" value="57">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Mars-(sookshma)">
+      <h3>Mars (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-10-04">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="4"> :
+        <input class="startMin" type="number" min="0" max="59" value="33"> :
+        <input class="startSec" type="number" min="0" max="59" value="57">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-10-16">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="5"> :
+        <input class="endMin" type="number" min="0" max="59" value="9"> :
+        <input class="endSec" type="number" min="0" max="59" value="49">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Merc-(sookshma)">
+      <h3>Merc (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-10-16">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="5"> :
+        <input class="startMin" type="number" min="0" max="59" value="9"> :
+        <input class="startSec" type="number" min="0" max="59" value="49">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-10-31">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="5"> :
+        <input class="endMin" type="number" min="0" max="59" value="54"> :
+        <input class="endSec" type="number" min="0" max="59" value="38">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Sat-(sookshma)">
+      <h3>Sat (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-10-31">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="5"> :
+        <input class="startMin" type="number" min="0" max="59" value="54"> :
+        <input class="startSec" type="number" min="0" max="59" value="38">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-11-18">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="6"> :
+        <input class="endMin" type="number" min="0" max="59" value="48"> :
+        <input class="endSec" type="number" min="0" max="59" value="25">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+    <div class="calc" id="calc-Ven-(sookshma)">
+      <h3>Ven (sookshma)</h3>
+      <div class="small">Start (pre-filled)</div>
+      <input type="date" class="startDate" value="2025-11-18">
+      <div class="time-entry">
+        <input class="startHour" type="number" min="1" max="12" value="6"> :
+        <input class="startMin" type="number" min="0" max="59" value="48"> :
+        <input class="startSec" type="number" min="0" max="59" value="25">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div class="small">End (pre-filled)</div>
+      <input type="date" class="endDate" value="2025-12-09">
+      <div class="time-entry">
+        <input class="endHour" type="number" min="1" max="12" value="7"> :
+        <input class="endMin" type="number" min="0" max="59" value="51"> :
+        <input class="endSec" type="number" min="0" max="59" value="10">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree & Minutes</label>
+      <div class="time-entry">
+        <input class="deg" type="number" min="0" max="30" value="3" style="width:80px"> °
+        <input class="min" type="number" min="0" max="59" value="0" style="width:80px"> ′
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result" aria-live="polite">Result will appear here</div>
+    </div>
+    
+  </div>
+
+<script>
+function pad(n){return String(n).padStart(2,'0')}
+function toMsFromElems(root, dateCls, hCls, mCls, sCls, apCls){
+  const dateEl = root.querySelector('.' + dateCls);
+  if(!dateEl) return NaN;
+  const dateVal = dateEl.value;
+  const d = new Date(dateVal + 'T00:00:00');
+  let h = Number(root.querySelector('.' + hCls).value || 0);
+  const m = Number(root.querySelector('.' + mCls).value || 0);
+  const s = Number(root.querySelector('.' + sCls).value || 0);
+  const ap = root.querySelector('.' + apCls).value;
+  if(ap === 'PM' && h < 12) h += 12;
+  if(ap === 'AM' && h === 12) h = 0;
+  d.setHours(h, m, s, 0);
+  return d.getTime();
+}
+
+function formatDateMS(ms){
+  const d = new Date(ms);
+  const yyyy = d.getFullYear();
+  const mm = pad(d.getMonth()+1), dd = pad(d.getDate());
+  let hh = d.getHours(), mi = pad(d.getMinutes()), ss = pad(d.getSeconds());
+  const am = hh >= 12 ? 'PM' : 'AM';
+  hh = hh % 12 || 12;
+  return `${yyyy}-${mm}-${dd} ${pad(hh)}:${mi}:${ss} ${am}`;
+}
+
+function runCalc(btn){
+  const root = btn.closest('.calc');
+  const sMs = toMsFromElems(root, 'startDate', 'startHour', 'startMin', 'startSec', 'startAmpm');
+  const eMs = toMsFromElems(root, 'endDate', 'endHour', 'endMin', 'endSec', 'endAmpm');
+  if(!Number.isFinite(sMs) || !Number.isFinite(eMs) || eMs <= sMs){
+    root.querySelector('.result').innerText = 'Invalid start/end';
+    return;
+  }
+  const deg = Number(root.querySelector('.deg').value || 0);
+  const mins = Number(root.querySelector('.min').value || 0);
+  if(isNaN(deg) || deg < 0 || deg > 30){ root.querySelector('.result').innerText = 'Degree must be 0–30'; return; }
+  if(isNaN(mins) || mins < 0 || mins >= 60){ root.querySelector('.result').innerText = 'Minutes 0–59'; return; }
+  const dec = deg + mins/60;
+  const fraction = dec / 30;
+  const resMs = sMs + fraction * (eMs - sMs);
+  root.querySelector('.result').innerText = `${deg}°${mins}′ → ${formatDateMS(resMs)}`;
+}
+</script>
+</body>
+</html>
