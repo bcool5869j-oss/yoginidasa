@@ -1,0 +1,457 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Yogini Dasha — Top 4 in Row + Calculators</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:system-ui,Arial; padding:18px; background:#fafafa; color:#111}
+    h1{color:#044; margin:0 0 10px}
+    .top-row{display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap; margin-bottom:20px}
+    .box{background:#fff; border:1px solid #ddd; padding:10px; border-radius:6px; min-width:220px}
+    .tables{display:flex; gap:12px; flex-wrap:wrap}
+    table{border-collapse:collapse; background:#fff; width:100%}
+    th,td{border:1px solid #ccc; padding:6px 8px; text-align:center; font-size:0.92rem}
+    th{background:#066;color:#fff}
+    caption{font-weight:700; padding:6px 0}
+    .calc{min-width:240px}
+    .calc h3{margin:0 0 8px; font-size:1rem; color:#055}
+    input, select, button{padding:6px; border-radius:6px; border:1px solid #ccc}
+    .time-entry{display:flex; gap:6px; align-items:center; margin-top:6px; flex-wrap:wrap}
+    .time-entry input{width:56px}
+    .angle-entry{display:flex; gap:6px; align-items:center; margin-top:8px; flex-wrap:wrap}
+    .angle-entry input{width:64px}
+    button.run{background:#066;color:#fff;border:0;padding:8px 10px;border-radius:6px;margin-top:8px}
+    .result{margin-top:8px; background:#eef; padding:8px; border-radius:6px; font-weight:700}
+    .grid-calcs{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; margin-top:18px}
+    @media(max-width:1100px){ .top-row{flex-direction:column} .box{width:100%} }
+  </style>
+</head>
+<body>
+  <h1>Yogini Dasha</h1>
+
+  <div class="top-row">
+    <!-- Box 1: Planets table -->
+    <div class="box" style="flex:1 1 240px;">
+      <table>
+        <caption>Planets & Lagna</caption>
+        <tr><th>Body</th><th>Longitude</th><th>Nakshatra</th></tr>
+        <tr><td>Lagna</td><td>12 Sg 22′ 07.92″</td><td>Mool</td></tr>
+        <tr><td>Sun</td><td>14 Sc 26′ 23.76″</td><td>Anu</td></tr>
+        <tr><td>Moon</td><td>21 Cp 32′ 32.13″</td><td>Srav</td></tr>
+        <tr><td>Mars (R)</td><td>3 Cn 51′ 00.96″</td><td>Push</td></tr>
+        <tr><td>Mercury (R)</td><td>28 Li 33′ 45.60″</td><td>Visa</td></tr>
+        <tr><td>Jupiter</td><td>15 Vi 49′ 12.51″</td><td>Hast</td></tr>
+        <tr><td>Venus</td><td>26 Sg 06′ 45.76″</td><td>Psha</td></tr>
+        <tr><td>Saturn</td><td>19 Cp 43′ 58.67″</td><td>Srav</td></tr>
+        <tr><td>Rahu</td><td>27 Sc 47′ 50.59″</td><td>Jye</td></tr>
+        <tr><td>Ketu</td><td>27 Ta 47′ 50.59″</td><td>Mrig</td></tr>
+      </table>
+    </div>
+
+    <!-- Box 2: Houses table -->
+    <div class="box" style="flex:1 1 220px;">
+      <table>
+        <caption>House Cusps</caption>
+        <tr><th>House</th><th>Cusp Degree</th></tr>
+        <tr><td>1st</td><td>12 Sg 22′ 07.92″</td></tr>
+        <tr><td>2nd</td><td>16 Cp 09′ 40.56″</td></tr>
+        <tr><td>3rd</td><td>19 Aq 57′ 13.19″</td></tr>
+        <tr><td>4th</td><td>23 Pi 44′ 45.83″</td></tr>
+        <tr><td>5th</td><td>19 Ar 57′ 13.19″</td></tr>
+        <tr><td>6th</td><td>16 Ta 09′ 40.56″</td></tr>
+        <tr><td>7th</td><td>12 Ge 22′ 07.92″</td></tr>
+        <tr><td>8th</td><td>16 Cn 09′ 40.56″</td></tr>
+        <tr><td>9th</td><td>19 Le 57′ 13.19″</td></tr>
+        <tr><td>10th</td><td>23 Vi 44′ 45.83″</td></tr>
+        <tr><td>11th</td><td>19 Li 57′ 13.19″</td></tr>
+        <tr><td>12th</td><td>16 Sc 09′ 40.56″</td></tr>
+      </table>
+    </div>
+
+    <div class="box calc" style="flex:1 1 260px;">
+      <h3>Rahu MD (Mahadasha)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2020-01-19">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="8"> :
+        <input class="startMin" type="number" value="57"> :
+        <input class="startSec" type="number" value="12">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2028-01-19">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="10"> :
+        <input class="endMin" type="number" value="10"> :
+        <input class="endSec" type="number" value="31">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="box calc" style="flex:1 1 260px;">
+      <h3>Sat AD (Antardasha under Rahu MD)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-02-28">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="5"> :
+        <input class="startMin" type="number" value="44"> :
+        <input class="startSec" type="number" value="3">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2026-06-30">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="5"> :
+        <input class="endMin" type="number" value="56"> :
+        <input class="endSec" type="number" value="16">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+  </div>
+
+  <h2>Other Calculators</h2>
+  <div class="grid-calcs">
+
+    <div class="calc">
+      <h3>Rah PD (Pratyantardasha under Sat AD)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-08-23">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="2"> :
+        <input class="startMin" type="number" value="28"> :
+        <input class="startSec" type="number" value="27">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-12-09">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="7"> :
+        <input class="endMin" type="number" value="51"> :
+        <input class="endSec" type="number" value="10">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Rah (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-08-23">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="2"> :
+        <input class="startMin" type="number" value="28"> :
+        <input class="startSec" type="number" value="27">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-09-16">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="3"> :
+        <input class="endMin" type="number" value="40"> :
+        <input class="endSec" type="number" value="10">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Mars (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-09-16">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="3"> :
+        <input class="startMin" type="number" value="40"> :
+        <input class="startSec" type="number" value="10">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-09-19">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="3"> :
+        <input class="endMin" type="number" value="49"> :
+        <input class="endSec" type="number" value="8">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Venus (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-09-19">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="3"> :
+        <input class="startMin" type="number" value="49"> :
+        <input class="startSec" type="number" value="8">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-09-25">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="4"> :
+        <input class="endMin" type="number" value="7"> :
+        <input class="endSec" type="number" value="4">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Mercury (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-09-25">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="4"> :
+        <input class="startMin" type="number" value="7"> :
+        <input class="startSec" type="number" value="4">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-10-04">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="4"> :
+        <input class="endMin" type="number" value="33"> :
+        <input class="endSec" type="number" value="57">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Sun (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-10-04">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="4"> :
+        <input class="startMin" type="number" value="33"> :
+        <input class="startSec" type="number" value="57">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-10-16">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="5"> :
+        <input class="endMin" type="number" value="9"> :
+        <input class="endSec" type="number" value="49">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Moon (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-10-16">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="5"> :
+        <input class="startMin" type="number" value="9"> :
+        <input class="startSec" type="number" value="49">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-10-31">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="5"> :
+        <input class="endMin" type="number" value="54"> :
+        <input class="endSec" type="number" value="38">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Sat (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-10-31">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="5"> :
+        <input class="startMin" type="number" value="54"> :
+        <input class="startSec" type="number" value="38">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-11-18">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="6"> :
+        <input class="endMin" type="number" value="48"> :
+        <input class="endSec" type="number" value="25">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+    <div class="calc">
+      <h3>Jupiter (sookshma)</h3>
+      <div>Start</div>
+      <input type="date" class="startDate" value="2025-11-18">
+      <div class="time-entry">
+        <input class="startHour" type="number" value="6"> :
+        <input class="startMin" type="number" value="48"> :
+        <input class="startSec" type="number" value="25">
+        <select class="startAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <div>End</div>
+      <input type="date" class="endDate" value="2025-12-09">
+      <div class="time-entry">
+        <input class="endHour" type="number" value="7"> :
+        <input class="endMin" type="number" value="51"> :
+        <input class="endSec" type="number" value="10">
+        <select class="endAmpm"><option selected>AM</option><option >PM</option></select>
+      </div>
+
+      <label>Degree / Minutes / Seconds</label>
+      <div class="angle-entry">
+        <input class="deg" type="number" min="0" max="30" value="3"> °
+        <input class="min" type="number" min="0" max="59" value="0"> ′
+        <input class="sec" type="number" min="0" max="59" value="0"> ″
+      </div>
+
+      <button class="run" onclick="runCalc(this)">Calculate</button>
+      <div class="result">Result will appear here</div>
+    </div>
+    
+  </div>
+
+<script>
+function pad(n){return String(n).padStart(2,'0')}
+function toMs(root, dateCls,hCls,mCls,sCls,apCls){
+  const dVal=root.querySelector('.'+dateCls).value;
+  if(!dVal)return NaN;
+  const d=new Date(dVal+'T00:00:00');
+  let h=Number(root.querySelector('.'+hCls).value||0);
+  const m=Number(root.querySelector('.'+mCls).value||0);
+  const s=Number(root.querySelector('.'+sCls).value||0);
+  const ap=root.querySelector('.'+apCls).value;
+  if(ap==='PM'&&h<12)h+=12;
+  if(ap==='AM'&&h===12)h=0;
+  d.setHours(h,m,s,0);
+  return d.getTime();
+}
+function runCalc(btn){
+  const root=btn.closest('.calc');
+  const sMs=toMs(root,'startDate','startHour','startMin','startSec','startAmpm');
+  const eMs=toMs(root,'endDate','endHour','endMin','endSec','endAmpm');
+  if(!(sMs>0&&eMs>sMs)){root.querySelector('.result').innerText='Invalid dates';return;}
+  const deg=Number(root.querySelector('.deg').value||0);
+  const mins=Number(root.querySelector('.min').value||0);
+  const secs=Number(root.querySelector('.sec').value||0);
+  if(isNaN(deg)||deg<0||deg>30){root.querySelector('.result').innerText='Bad degree';return;}
+  if(isNaN(mins)||mins<0||mins>=60){root.querySelector('.result').innerText='Bad minutes';return;}
+  if(isNaN(secs)||secs<0||secs>=60){root.querySelector('.result').innerText='Bad seconds';return;}
+  const dec = deg + mins/60 + secs/3600;
+  const fraction = dec/30;
+  const resMs = sMs + fraction*(eMs - sMs);
+  const d = new Date(resMs);
+  let h = d.getHours(), mi = pad(d.getMinutes()), ss = pad(d.getSeconds());
+  const am = h>=12?'PM':'AM'; h = h%12||12;
+  root.querySelector('.result').innerText = `${deg}°${mins}′${secs}″ → ${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(h)}:${mi}:${ss} ${am}`;
+}
+</script>
+</body>
+</html>
